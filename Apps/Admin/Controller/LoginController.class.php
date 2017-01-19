@@ -1,12 +1,12 @@
 <?php
-namespace Home\Controller;
+namespace Admin\Controller;
 use Think\Controller;
 class LoginController extends Controller {
-	//用户登录首页
+	//管理员登录页面
     public function index(){
-    	$this -> display();
+    	$this->display();
     }
-    //验证用户名密码
+    //验证管理员用户名密码
     public function login(){
     	
     }
