@@ -1,53 +1,22 @@
 @CHARSET "UTF-8";
-#login{
-	width: auto;
-	height: 400px;
-	border: 2px solid #CCC;
+.login{
+		width:311px;
+		//border:1px solid black;
+		margin:auto;
 }
-#login h2{
+.login h2{
 	text-indent: 0;
 	text-align: center;
+	font-size: 30px;
+	display:block;
+	margin-bottom:100px;
+	margin-top:100px
 }
-#login dl{
-	margin: 0 auto;
-	width: 350px;
-	border:1px solid black;
-}
-#login dt {
-	text-align: center;
-	padding: 10px 0;
-	font-weight: bold;
-}
-#login dl dd{
-	padding: 5px 18px;
-}
-#login dl dd input.text{
-	width: 160px;
-	height: 19px;
-	border: 1px solid black;
-	background: #fff;
-}
-#login dl dd input.yzm{
-	width: 80px;
-}
-#login dl dd input.reset{
-	width: 60px;
-	height: 19px;
-	background: #fff;
-	cursor: pointer;
-	
-}
-#login dl dd input.submit{
-	width: 60px;
-	height: 19px;
-	background: #fff;
-	cursor: pointer;
-	margin: -18 0 0 170px;
-}
-
-#login dl dd img#code{
-	position: relative;
-	left: 10px;
-	top: 5px;
-	cursor: pointer;
+.yzm{
+	width:150px;
+	height:30px;
+	//border:1px solid black;
+	float:left;
+	margin-left:90px;
+	margin-bottom:15px;
 }
