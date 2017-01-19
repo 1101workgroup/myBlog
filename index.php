@@ -21,7 +21,7 @@ define('APP_DEBUG',True);
 define('APP_PATH','./Apps/');
 
 //入口绑定
-define('BIND_MODULE','Home');
+//define('BIND_MODULE','Home');
 
 
 // 引入ThinkPHP入口文件
