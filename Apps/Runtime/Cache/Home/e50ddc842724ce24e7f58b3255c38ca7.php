@@ -2,10 +2,12 @@
 <body>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="/Public/css/login.css" />
+<link rel="stylesheet" type="text/css" href="/Public/home/css/login.css" />
 <link rel="stylesheet" type="text/css" href="/Public/plu/layui/css/layui.css" />
 <!-- 引入layui.js -->
+<script src="/Public/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='/Public/plu/layui/layui.js'></script>
+<script type="text/javascript" src='/Public/home/js/login.js'></script>
 
 </head>
 <div class='login layui-form layui-form-pane'><!-- 这个layui-form 用来表明这个div包着的都是表单元素，比如单选框、复选框等样式，一定要有这个class包着，才能正常显示 -->
@@ -23,7 +25,7 @@
 		<div class="layui-form-item">
     		<label class="layui-form-label">密码</label>
    			 <div class="layui-input-inline">
-    		  <input type="text" name=" pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    		  <input type="text" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
     		</div>
   		</div>
 	</dd> 
@@ -37,16 +39,11 @@
   		</div>
 	</dd>
 	<dd>
-		<div class="yzm" >
-   			 <img src="/Public\plu\layui\images\face\0.gif"/>
-  		</div>
-	</dd>
-	<dd>
 		<div class="layui-form-item">
 		    <div class="layui-input-block">
 		      <div>
-		      <span style="padding-left:20px;"><a href="/user/forget">马上注册？</a></span>
-		      <button class="layui-btn" lay-submit lay-filter="*">立即登录</button>
+		      <span id="reg" style="padding-left:20px;cursor:pointer;" lay-submit lay-filter="register">马上注册？</span>
+		      <button class="layui-btn" lay-submit lay-filter="index">立即登录</button>
 		    </div>
 	    </div>
 	</dd>
@@ -55,15 +52,6 @@
  
 
 </div>
-
-<script>
-//这个js控制所有的form操作，包括样式显示，也必须有这个js
-layui.use('form', function(){
-  var form = layui.form();
-  
-  //各种基于事件的操作，下面会有进一步介绍
-});
-</script>
 
 </body>
 </html>
