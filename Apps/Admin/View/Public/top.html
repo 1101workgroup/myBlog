@@ -2,11 +2,25 @@
 <html>
 <head>
 <style>
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
 .wrap-top{
 		height:70px;
 		background:#393D49;
 		border-bottom:5px solid #bbb;
 		color:#fff;
+	}
+	.manager-info{
+		height:70px;
+		line-height:70px;
+		margin-right:20px;
+	}
+	.manager-info span{
+		cursor:pointer;
 	}
 .wrap-top .title{
 	height:70px;
@@ -20,7 +34,15 @@
 <body>
 <div class="wrap-top">
 
-	<div class='title'>myBlog后台管理</div>
+	<div class='title left'>myBlog后台管理</div>
+	<div class='manager-info right'>
+		欢迎登录,{$Think.session.manager-user}! | <span onclick='logout()'>注销</span>
+	</div>
 	</div>
 </body>
+<script>
+function logout(){
+	window.location.href='/admin/Login/logout';
+}
+</script>
 </html>
