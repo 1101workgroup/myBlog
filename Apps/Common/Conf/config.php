@@ -13,6 +13,7 @@ return array (
 				'Home',
 				'Admin' 
 		),
+		'SHOW_PAGE_TRACE'=>true,
 		'DEFAULT_MODULE' => 'Home' 
 ) // 默认模块
 ;

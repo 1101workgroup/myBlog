@@ -1,0 +1,111 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="__PUBLIC__/admin/css/base.css" />
+<link rel="stylesheet" type="text/css"
+	href="__PUBLIC__/plu/layui/css/layui.css" />
+<script src="__PUBLIC__/admin/js/jquery-1.11.1.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
+<style type="text/css">
+.wrap-right {
+	margin-left: 200px;
+}
+
+.quote {
+	margin: 20px 0px 10px 20px;
+	padding: 15px;
+	line-height: 22px;
+	border-left: 5px solid #bbb;
+	border-radius: 0 2px 2px 0;
+	background-color: #f2f2f2;
+}
+
+.article {
+	background: #888;
+}
+
+.art_info_wrap{
+	margin: 20px 20px 20px 50px;
+	width:600px;
+}
+</style>
+</head>
+
+
+<body>
+	<include file="Public:top" />
+	<include file="Public:left" />
+	<div class="wrap-right">
+		<p class="quote">当前位置：文章管理</p>
+		<div class='art_info_wrap left'>
+			<div class='context-wrap layui-form'>
+			<div class="layui-form-item">
+    <label class="layui-form-label">文章标题</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">编辑作者</label>
+    <div class="layui-input-inline">
+      <input type="text" name="author" required  lay-verify="required" placeholder="请输入编辑作者" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">栏目分类</label>
+    <div class="layui-input-inline">
+      <select name="column" lay-verify="required">
+        <option value=""></option>
+        <option value="0">北京</option>
+        <option value="1">上海</option>
+        <option value="2">广州</option>
+        <option value="3">深圳</option>
+        <option value="4">杭州</option>
+      </select>
+    </div>
+  </div>
+			<textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
+			</textarea>
+
+<br/>
+<div class="layui-form-item right">
+    <div class="layui-input-inline">
+      <input type='button' value='添加文章' class="layui-btn" lay-submit lay-filter="formDemo" />
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+
+			<script>
+			layui.use(['layedit','form'], function() {
+				var layedit = layui.layedit, $ = layui.jquery;
+				var form = layui.form();
+				//构建一个默认的编辑器
+				var index = layedit.build('LAY_demo1');
+				
+				//监听提交
+				  form.on('submit(formDemo)', function(data){
+					  
+				  	  var arr = {
+				  		"context" : layedit.getContent(index)
+				  	  }
+				  	  alert(JSON.stringify(data.field));
+				  	data['context'] = layedit.getContent(index);	 
+				  	  layer.msg(JSON.stringify(data.field));
+					  /* $.ajax({
+						  type:'post',
+						  url:'/admin/Login/do_add',
+						  data:
+					  }) */
+				    return false;
+				  });
+			});
+				
+			</script>
+		</div>
+		</div>
+		
+	</div>
+
+</body>
+</html>
