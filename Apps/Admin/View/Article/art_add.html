@@ -37,7 +37,7 @@
 	<include file="Public:top" />
 	<include file="Public:left" />
 	<div class="wrap-right">
-		<p class="quote">当前位置：文章管理</p>
+		<p class="quote">当前位置：文章管理/文章添加</p>
 		<div class='art_info_wrap left'>
 			<div class='context-wrap layui-form'>
 			<div class="layui-form-item">
@@ -57,11 +57,9 @@
     <div class="layui-input-inline">
       <select name="column" lay-verify="required">
         <option value=""></option>
-        <option value="0">北京</option>
-        <option value="1">上海</option>
-        <option value="2">广州</option>
-        <option value="3">深圳</option>
-        <option value="4">杭州</option>
+        <volist name='list' id='vo'>
+        	<option value='{$vo.id}'>{$vo.name}</option>
+        </volist>
       </select>
     </div>
   </div>

@@ -15,7 +15,7 @@ class LoginController extends Controller {
  		$json = json_decode ( $json );//将json字符串转成对象，如果带第二个参数true，则转成数组 
 		$con ['user'] = $json->user;
 		$con ['pwd'] = md5 ( $json->pwd );
-		$m = M ( 'manager' );
+		$m = M ( 'mb_manager' );
 		$result = $m->where ( $con )->find ();
 		if ($result != null) {
 			$_SESSION['manager'] = $result['id'];
