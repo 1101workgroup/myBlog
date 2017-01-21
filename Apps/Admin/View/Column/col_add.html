@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="__PUBLIC__/admin/css/base.css" />
+<link rel="stylesheet" type="text/css"
+	href="__PUBLIC__/plu/layui/css/layui.css" />
+<script src="__PUBLIC__/admin/js/jquery-1.11.1.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
+<style type="text/css">
+.wrap-right {
+	margin-left: 200px;
+}
+
+
+.column {
+	background: #888;
+}
+
+.art_info_wrap {
+	margin: 20px 20px 20px 50px;
+	width: 600px;
+}
+</style>
+</head>
+<body><include file="Public:top" />
+	<include file="Public:left" />
+	<div class="wrap-right">
+	<p class="quote">当前位置：栏目管理/栏目添加</p>
+	<div class='art_info_wrap left'>
+			<div class='context-wrap layui-form'>
+			<div class="layui-form-item">
+    <label class="layui-form-label">栏目名称</label>
+    <div class="layui-input-block">
+      <input type="text" name="name" required  lay-verify="required" placeholder="请输入栏目" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+<br/>
+<div class="layui-form-item right">
+    <div class="layui-input-inline">
+      <input type='button' value='添加栏目' class="layui-btn" lay-submit lay-filter="formDemo" />
+      <button type="button" class="layui-btn layui-btn-primary" onclick="location.href='/admin/column';">返回</button>
+    </div>
+  </div>
+
+			<script>
+			layui.use(['form'], function() {
+				var form = layui.form();
+				
+				//监听提交
+				  form.on('submit(formDemo)', function(data){
+					  
+					  $.ajax({
+						  type:'post',
+						  url:'/admin/column/do_add',
+						  data:JSON.stringify(data.field),
+						  success:function(data){
+							  switch(data){
+							  	case '1':
+							  		layer.alert('添加栏目成功', {icon: 1},function() {
+										location.reload();
+									});
+							  		break;
+							  	case '0':
+							  		layer.alert('添加栏目失败', {icon: 2},function() {
+										location.reload();
+									});
+							  }
+						  }
+					  })
+				    return false;
+				  });
+			});
+				
+			</script>
+		</div>
+		</div>
+	</div></body>
+</html>

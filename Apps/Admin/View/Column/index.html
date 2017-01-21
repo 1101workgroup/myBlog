@@ -4,19 +4,14 @@
 	href="__PUBLIC__/admin/css/base.css" />
 <link rel="stylesheet" type="text/css"
 	href="__PUBLIC__/plu/layui/css/layui.css" />
+	<script src="__PUBLIC__/admin/js/jquery-1.11.1.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
 <style type="text/css">
 .wrap-right {
 	margin-left: 200px;
 }
 
-.quote {
-	margin:20px 0px 10px 20px;
-	padding: 15px;
-	line-height: 22px;
-	border-left: 5px solid #bbb;
-	border-radius: 0 2px 2px 0;
-	background-color: #f2f2f2;
-}
 .column{
 	background: #888;
 }
@@ -29,7 +24,96 @@
 	<include file="Public:left" />
 	<div class="wrap-right">
 		<p class="quote">当前位置：栏目管理</p>
-	</div>
+		<div class='search-wrap'>
+			    <label class="layui-form-label">栏目名称</label>
+			    <div class="layui-input-inline">
+			      <input type="name" name="text" required lay-verify="required" placeholder="请输入栏目名称" value='{$name|default=""}' autocomplete="off" class="layui-input search-name">
+			    </div>
+			    <button class="layui-btn" lay-submit lay-filter="search-btn">
+  <i class="layui-icon">&#xe615;</i>
+</button>
+		</div>                          
+		<div class='edit-wrap'>
+			<a href='/admin/column/col_add'><button class="layui-btn">
+					<i class="layui-icon">&#xe608;</i> 添加
+				</button></a>
 
+		</div>
+		<div class='table-wrap'>
+			<table class="layui-table" lay-even="" lay-skin="nob">
+				<colgroup>
+					<col width="150">
+					<col width="150">
+					<col width="200">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>栏目名称</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name='list' id='vo'>
+					<tr>
+						<td>{$vo.name}</td>
+						<td><button class="layui-btn" lay-submit
+								lay-filter="art-edit" value='{$vo.id}'>
+								<i class="layui-icon">&#xe642;</i> 编辑
+							</button>
+							<button class="layui-btn " lay-submit lay-filter="art-delete"
+								value='{$vo.id}'>
+								<i class="layui-icon">&#xe640;</i> 删除
+							</button></td>
+					</tr>
+					</volist>
+
+				</tbody>
+			</table>
+		</div>
+		<div class='pages'>{$page}</div>
+	</div>
+<script>
+		
+		layui.use([ 'form' ], function() {
+			var form = layui.form();
+			form.on('submit(art-edit)', function(data) {
+				window.location.href = '/admin/column/col_edit/id/'
+						+ $(this).val();
+			});
+			
+			form.on('submit(search-btn)',function(data){
+				location.href='/admin/column/index/name/'+$('.search-name').val();
+			});
+			//监听提交
+			form.on('submit(art-delete)', function(data) {
+				$.ajax({
+					type : 'post',
+					url : '/admin/column/col_delete',
+					data : {
+						'id' : $(this).val()
+					},
+					success : function(data) {
+						switch (data) {
+						case "1":
+							layer.alert('删除栏目成功', {
+								icon : 1
+							}, function() {
+								location.reload();
+							});
+							break;
+						case "2":
+							layer.alert('删除栏目失败', {
+								icon : 2
+							}, function() {
+								location.reload();
+							});
+						}
+					}
+				})
+			});
+
+		});
+	</script>
 </body>
 </html>

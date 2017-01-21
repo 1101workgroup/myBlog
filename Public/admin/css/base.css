@@ -3,9 +3,19 @@
 	padding:0px;
 	/* background:#393D49; */
 }
-
+.search-wrap{
+	margin:20px 0px 20px 0px;
+}
 .wrap-right{
 	background:#fff;
+}
+.quote {
+	margin: 20px 0px 10px 20px;
+	padding: 15px;
+	line-height: 22px;
+	border-left: 5px solid #009688;
+	border-radius: 0 2px 2px 0;
+	background-color: #fafafa;
 }
 .edit-wrap{
 	
@@ -17,4 +27,46 @@
 }
 .right{
 	float:right;
+}
+.pages {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	height: 42px;
+	float: left;
+	margin: 0px 0px 0px 20px;
+	color: #033C71;
+}
+
+.pages .current {
+	background: #009688;
+color: white;
+}
+.pages a{
+	text-decoration:  none;
+	color: #555555;
+}
+.pages .prev,
+.pages .num,
+.pages .next,
+.pages .current,
+.pages .end,
+.pages .first {
+	float: left;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	margin: 4px;
+	padding: 1px 2px;
+	border: 1px dashed #dddddd;
+}
+
+.pages .prev:hover,
+.pages .num:hover,
+.pages .next:hover,
+.pages .current:hover,
+.pages .end:hover,
+.pages .first:hover{
+background: #5FB878;
+color: white;
 }
