@@ -17,7 +17,7 @@
 		<div class="layui-form-item">
     		<label class="layui-form-label">用户名</label>
    			 <div class="layui-input-inline">
-    		  <input type="text" name="user" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+    		  <input type="text" name="user"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
     		</div>
   		</div>
 	</dd> 
@@ -25,7 +25,7 @@
 		<div class="layui-form-item">
     		<label class="layui-form-label">密码</label>
    			 <div class="layui-input-inline">
-    		  <input type="text" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    		  <input type="text" name="pwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
     		</div>
   		</div>
 	</dd> 
@@ -34,7 +34,7 @@
 		<div class="layui-form-item">
    			 <label class="layui-form-label">验证码</label>
    			 <div class="layui-input-inline">
-     		 <input type="text" name="yzm" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+     		 <input type="text" name="yzm"  placeholder="请输入验证码" autocomplete="off" class="layui-input">
     		 </div>
   		</div>
 	</dd>
