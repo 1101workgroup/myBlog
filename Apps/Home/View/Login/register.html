@@ -7,7 +7,7 @@
 <!-- 引入layui.js -->
 <script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
-<script type="text/javascript" src='__PUBLIC__/home/js/login.js'></script>
+<script type="text/javascript" src='__PUBLIC__/home/js/register.js'></script>
 </head>
 <div id='register' class='layui-form layui-form-pane'>
 	<form class="layui-form layui-form-pane" action="">
@@ -16,7 +16,7 @@
 			<div class="layui-form-item">
 	    		<label class="layui-form-label">用户名</label>
 	   			 <div class="layui-input-inline">
-	    		  <input type="text" name="user" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+	    		  <input type="text" name="user" lay-verify="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 	    		</div>
 	  		</div>
 		</dd> 
@@ -24,7 +24,7 @@
 			<div class="layui-form-item">
 	    		<label class="layui-form-label">密码</label>
 	   			 <div class="layui-input-inline">
-	    		  <input type="password" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+	    		  <input type="password" name="pwd" lay-verify="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
 	    		</div>
 	  		</div>
 		</dd> 
@@ -39,7 +39,7 @@
 		</dd>
 		<dd>
 			<div class="layui-form-item">
-				<label class="layui-form-label">单选框</label>
+				<label class="layui-form-label">性别</label>
 				<div class="layui-input-block">
 					<input type="radio" name="sex" value="男" title="男" checked="">
 					<input type="radio" name="sex" value="女" title="女">
@@ -49,7 +49,7 @@
 		<dd>
 			<div class="layui-form-item">
 			    <div class="layui-input-block">
-			      <button class="layui-btn" lay-submit lay-filter="*">立即注册</button>
+			      <button style="float:right;margin-right:150px;margin-top:15px;" class="layui-btn" lay-submit lay-filter="*">立即注册</button>
 			    </div>
 		    </div>
 		</dd>
