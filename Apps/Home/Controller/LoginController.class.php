@@ -10,4 +10,13 @@ class LoginController extends Controller {
     public function login(){
     	
     }
+    public function register(){
+    	$json = file_get_contents('php://input');
+    	$json = json_decode($json);
+    	$data['user'] = $json->user;
+    	$data['pwd'] = $json->pwd;
+    	$data['email'] = $json->email;
+    	$data['sex'] = $json->sex;
+    	echo $json->user.$json->pwd.$json->email.$json->sex;
+    }
 }
