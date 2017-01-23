@@ -21,46 +21,50 @@ layui.use(['form', 'layer'], function(){  // 如果只加载一个组件，可�
 			      content:'http://localhost/Login/register'
 			    });
 		  });
+		  
+		  //verify 不需要放在按钮点击事件里面，当你去点击按钮的时候会事先去判断这个verify这个中的验证
+		  form.verify({
+				//注册用户时验证
+			username : function(value) {
+				if (value.length == 0) {
+					return '用户名不得为空';
+				}
+				if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$")
+						.test(value)) {
+					return '用户名不能有特殊字符';
+				}
+				if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+					return '用户名首尾不能出现下划线\'_\'';
+				}
+				if (/^\d+\d+\d$/.test(value)) {
+					return '用户名不能全为数字';
+				}
+				if (value.length < 2 || value.length > 20) {
+					return '用户名不得小于2位或者用户名不得大于20位';
+				}
+			}
+			// 注册密码时验证
+			,
+			password : function(value) {
+				if (value.length == 0) {
+					return '密码不得为空';
+				}
+				if (!(/^[\S]{6,12}$/.test(value))) {
+					return '密码必须6到12位，且不能出现空格';
+				}
+			}
+			// 注册邮箱时验证
+			,
+			yzm : function(value) {
+				if (!(value.length == 4)) {
+					return '验证码必须为4位';
+				}
+			}
+		});
 		  // 监听登录提交按钮
+		  //这个按钮点击之后，会事先去判断verify中的验证的，这个监听中，只要写登录的操作就行了。
 		  form.on('submit(index)', function(){
-			  form.verify({
-					//注册用户时验证
-				username : function(value) {
-					if (value.length == 0) {
-						return '用户名不得为空';
-					}
-					if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$")
-							.test(value)) {
-						return '用户名不能有特殊字符';
-					}
-					if (/(^\_)|(\__)|(\_+$)/.test(value)) {
-						return '用户名首尾不能出现下划线\'_\'';
-					}
-					if (/^\d+\d+\d$/.test(value)) {
-						return '用户名不能全为数字';
-					}
-					if (value.length < 2 || value.length > 20) {
-						return '用户名不得小于2位或者用户名不得大于20位';
-					}
-				}
-				// 注册密码时验证
-				,
-				password : function(value) {
-					if (value.length == 0) {
-						return '密码不得为空';
-					}
-					if (!(/^[\S]{6,12}$/.test(value))) {
-						return '密码必须6到12位，且不能出现空格';
-					}
-				}
-				// 注册邮箱时验证
-				,
-				yzm : function(value) {
-					if (!(value.length == 4)) {
-						return '验证码必须为4位';
-					}
-				}
-			});
+			 //这个里面写登录的操作，可参考/apps/admin/view/login/index.html中的js ajax回调。
 		  });
 		  
 	
