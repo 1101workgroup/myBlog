@@ -32,7 +32,7 @@
 			<div class="layui-form-item">
     <label class="layui-form-label">栏目名称</label>
     <div class="layui-input-block">
-      <input type="text" name="name" required  lay-verify="required" placeholder="请输入栏目" autocomplete="off" class="layui-input">
+      <input type="text" name="name"  placeholder="请输入栏目" autocomplete="off" class="layui-input">
     </div>
   </div>
 
@@ -56,14 +56,18 @@
 						  url:'/admin/column/do_add',
 						  data:JSON.stringify(data.field),
 						  success:function(data){
-							  switch(data){
-							  	case '1':
-							  		layer.alert('添加栏目成功', {icon: 1},function() {
+							  switch(data['code']){
+							  	case 1:
+							  		layer.alert(data['message'], {icon: 1},function() {
 										location.reload();
 									});
 							  		break;
-							  	case '0':
-							  		layer.alert('添加栏目失败', {icon: 2},function() {
+							  	case 0:
+							  		layer.alert(data['message'], {icon: 2},function() {
+										location.reload();
+									});
+							  	case 2:
+							  		layer.alert(data['message'], {icon: 2},function() {
 										location.reload();
 									});
 							  }

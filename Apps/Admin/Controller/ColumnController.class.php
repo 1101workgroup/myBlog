@@ -16,7 +16,7 @@ class ColumnController extends Controller {
 			$con['name'] = $name;
 			$this->assign('name',$name);
 		}
-		$m = M ( 'mb_column' );
+		$m = M ( 'column' );
 		$count = $m->where($con)->count ();
 		$Page = new \Think\Page ( $count, 5 );
 		$show = $Page->show ();
@@ -32,17 +32,20 @@ class ColumnController extends Controller {
 		$json = file_get_contents ( 'php://input' );
 		$json = json_decode ( $json );
 		$data ['name'] = $json->name;
-		$m = M ( 'mb_column' );
-		$resutl = $m->add ( $data );
-		if ($resutl) {
-			echo 1;
-		} else {
-			echo 0;
+		$m = D ( 'column' );
+		if($m->create($data)){
+			if($m->add()){
+				$this->ajaxReturn(array('code'=>1,'message'=>'栏目添加成功')) ;
+			}else{
+				$this->ajaxReturn(array('code'=>0,'message'=>'栏目添加失败')) ;
+			}
+		}else{
+			$this->ajaxReturn(array('code'=>2,'message'=>$m->getError())) ;
 		}
 	}
 	public function col_edit() {
 		$id = I ( 'get.id', '' );
-		$m = M ( 'mb_column' );
+		$m = M ( 'column' );
 		$con ['id'] = $id;
 		$result = $m->where ( $con )->find ();
 		$this->assign ( 'result', $result );
@@ -53,7 +56,7 @@ class ColumnController extends Controller {
 		$json = json_decode ( $json );
 		$data ['name'] = $json->name;
 		$con ['id'] = $json->id;
-		$m = M ( 'mb_column' );
+		$m = M ( 'column' );
 		$result = $m->where ( $con )->save ( $data );
 		if ($result !== false) {
 			echo 1;
@@ -64,7 +67,7 @@ class ColumnController extends Controller {
 	public function col_delete() {
 		$id = I ( 'post.id', '' );
 		$con ['id'] = $id;
-		$m = M ( 'mb_column' );
+		$m = M ( 'column' );
 		$result = $m->where ( $con )->delete ();
 		if ($result) {
 			echo 1;

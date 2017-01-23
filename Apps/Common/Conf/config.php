@@ -8,6 +8,7 @@ return array (
 		'DB_USER' => 'root', // 用户名
 		'DB_PWD' => 'senken', // 密码
 		'DB_PORT' => 3306, // 端口
+		'DB_PREFIX' => 'mb_',
 		'DB_CHARSET' => 'utf8', // 字符集
 		'MODULE_ALLOW_LIST' => array (
 				'Home',
