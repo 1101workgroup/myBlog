@@ -50,7 +50,21 @@ layui.use('form', function(){  // 如果只加载一个组件，可以不填数�
 			  			url:'/Login/do_register',//传值目标地址
 			  			data:JSON.stringify(data.field),
 			  			success:function(data){
-			  				alert(data);
+			  				switch(data['code']){
+						  	case 1:
+						  		layer.alert(data['message'], {icon: 1},function() {
+									location.reload();
+								});
+						  		break;
+						  	case 0:
+						  		layer.alert(data['message'], {icon: 2},function() {
+									location.reload();
+								});
+						  	case 2:
+						  		layer.alert(data['message'], {icon: 2},function() {
+									location.reload();
+								});
+						  }
 			  			}
 			  		})
 			  });

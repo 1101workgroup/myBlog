@@ -22,9 +22,9 @@ layui.use(['form', 'layer'], function(){  // 如果只加载一个组件，可�
 			    });
 		  });
 		  
-		  //verify 不需要放在按钮点击事件里面，当你去点击按钮的时候会事先去判断这个verify这个中的验证
+		  //verify 不需要放在按钮点击事件里面，当你去点击按钮的时候会事先去判断这个verify这个中的验证 
 		  form.verify({
-				//注册用户时验证
+				//用户时验证
 			username : function(value) {
 				if (value.length == 0) {
 					return '用户名不得为空';
@@ -43,7 +43,7 @@ layui.use(['form', 'layer'], function(){  // 如果只加载一个组件，可�
 					return '用户名不得小于2位或者用户名不得大于20位';
 				}
 			}
-			// 注册密码时验证
+			// 密码时验证
 			,
 			password : function(value) {
 				if (value.length == 0) {
@@ -53,17 +53,35 @@ layui.use(['form', 'layer'], function(){  // 如果只加载一个组件，可�
 					return '密码必须6到12位，且不能出现空格';
 				}
 			}
-			// 注册邮箱时验证
+			// 验证码时验证
 			,
 			yzm : function(value) {
 				if (!(value.length == 4)) {
 					return '验证码必须为4位';
 				}
 			}
-		});
+		});	  
 		  // 监听登录提交按钮
 		  //这个按钮点击之后，会事先去判断verify中的验证的，这个监听中，只要写登录的操作就行了。
-		  form.on('submit(index)', function(){
+		  form.on('submit(index)', function(data){
+			  $.ajax({
+		  			type:'post',//以什么样的类型去传，post或者get
+		  			url:'/Login/do_login',//传值目标地址
+		  			data:JSON.stringify(data.field),
+		  			success:function(data){
+		  				switch(data['code']){
+					  	case 1:
+					  		layer.alert(data['message'], {icon: 1},function() {
+					  			window.location.href="http://localhost/index";
+							});
+					  		break;
+					  	case 0:
+					  		layer.alert(data['message'], {icon: 2},function() {
+								location.reload();
+							});
+					  }
+		  			}
+		  		})
 			 //这个里面写登录的操作，可参考/apps/admin/view/login/index.html中的js ajax回调。
 		  });
 		  
