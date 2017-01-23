@@ -27,8 +27,12 @@ class LoginController extends Controller {
     	$json = json_decode($json);
     	$data['user'] = $json->user;
     	$data['pwd'] = $json->pwd;
-    	$data['email'] = $json->email;
-    	$data['sex'] = $json->sex;
-    	echo $json->user.$json->pwd.$json->email.$json->sex;
+		$m = M('user');
+		$result = $m->add($data);
+		if($result){
+			$this->ajaxReturn(array('code'=>1,'message'=>'注册成功'));
+		}else{
+			$this->assign(array('code'=>0,'message'=>'注册失败'));
+		}
     }
 }
