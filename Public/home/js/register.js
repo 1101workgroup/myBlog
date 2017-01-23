@@ -44,7 +44,16 @@ layui.use('form', function(){  // 如果只加载一个组件，可以不填数�
 				 }
 			  }
 			}); 
-
+		  form.on('submit(register-btn)', function(data){
+			  		$.ajax({
+			  			type:'post',//以什么样的类型去传，post或者get
+			  			url:'/Login/do_register',//传值目标地址
+			  			data:JSON.stringify(data.field),
+			  			success:function(data){
+			  				alert(data);
+			  			}
+			  		})
+			  });
 		   
 });
 
