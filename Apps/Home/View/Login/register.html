@@ -54,9 +54,11 @@
 			<dd>
 				<div class="layui-form-item">
 					<label class="layui-form-label">验证码</label>
-					<div class="layui-input-block">
-						<div><img src="/login/Verification" /></div>
+					<div class="layui-input-inline">
+						<div><input type="text" name="authcode" lay-verify="authcode"
+							placeholder="请输入验证码" autocomplete="off" class="layui-input"></div>
 					</div>
+					<div class="layui-form-mid layui-word-aux"><img src="/login/Verification" /></div>
 				</div>
 			</dd>
 			<dd>
