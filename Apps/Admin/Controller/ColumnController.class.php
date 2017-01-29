@@ -44,32 +44,32 @@ class ColumnController extends Controller {
 		}
 	}
 	public function col_edit() {
-		$id = I ( 'get.id', '' );
 		$m = M ( 'column' );
-		$con ['id'] = $id;
-		$result = $m->where ( $con )->find ();
+		$result = $m->find (I ( 'get.id', '' ));
 		$this->assign ( 'result', $result );
 		$this->display ();
 	}
 	public function do_edit() {
-		$json = file_get_contents ( 'php://input' );
-		$json = json_decode ( $json );
-		$data ['name'] = $json->name;
-		$con ['id'] = $json->id;
-		$m = M ( 'column' );
-		$result = $m->where ( $con )->save ( $data );
-		if ($result !== false) {
-			echo 1;
-		} else {
-			echo 0;
+		if(IS_POST){
+			$json = file_get_contents ( 'php://input' );
+			$json = json_decode ( $json );
+			$data ['name'] = $json->name;
+			$data ['id'] = $json->id;
+			$m = D ( 'column' );
+			if($m->create($data)){
+				if($m->save() !== false){
+					$this->ajaxReturn(array('code'=>1,'message'=>'栏目修改成功')) ;
+				}else{
+					$this->ajaxReturn(array('code'=>0,'message'=>'栏目修改失败')) ;
+				}
+			}else{
+				$this->ajaxReturn(array('code'=>2,'message'=>$m->getError())) ;
+			}
 		}
+		
 	}
 	public function col_delete() {
-		$id = I ( 'post.id', '' );
-		$con ['id'] = $id;
-		$m = M ( 'column' );
-		$result = $m->where ( $con )->delete ();
-		if ($result) {
+		if ( M ( 'column' )->delete (I ( 'post.id', '' ))) {
 			echo 1;
 		} else {
 			echo 0;

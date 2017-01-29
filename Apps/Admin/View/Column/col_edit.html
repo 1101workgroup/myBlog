@@ -57,14 +57,18 @@
 						  url:'/admin/column/do_edit',
 						  data:JSON.stringify(data.field),
 						  success:function(data){
-							  switch(data){
-							  	case '1':
-							  		layer.alert('修改栏目成功', {icon: 1},function() {
+							  switch(data['code']){
+							  	case 1:
+							  		layer.alert(data['message'], {icon: 1},function() {
 										location.reload();
 									});
 							  		break;
-							  	case '0':
-							  		layer.alert('修改栏目失败', {icon: 2},function() {
+							  	case 0:
+							  		layer.alert(data['message'], {icon: 2},function() {
+										location.reload();
+									});
+							  	case 2:
+							  		layer.alert(data['message'], {icon: 2},function() {
 										location.reload();
 									});
 							  }
