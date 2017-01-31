@@ -13,7 +13,7 @@
 }
 
 
-.column {
+.cate {
 	background: #888;
 }
 
@@ -40,7 +40,7 @@
 <div class="layui-form-item right">
     <div class="layui-input-inline">
       <input type='button' value='添加栏目' class="layui-btn" lay-submit lay-filter="formDemo" />
-      <button type="button" class="layui-btn layui-btn-primary" onclick="location.href='/admin/column';">返回</button>
+      <button type="button" class="layui-btn layui-btn-primary" onclick="location.href='/admin/cate';">返回</button>
     </div>
   </div>
 
@@ -53,7 +53,7 @@
 					  
 					  $.ajax({
 						  type:'post',
-						  url:'/admin/column/do_add',
+						  url:'/admin/cate/do_add',
 						  data:JSON.stringify(data.field),
 						  success:function(data){
 							  switch(data['code']){

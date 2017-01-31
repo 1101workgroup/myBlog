@@ -12,7 +12,7 @@
 	margin-left: 200px;
 }
 
-.column{
+.cate{
 	background: #888;
 }
 </style>
@@ -34,7 +34,7 @@
 </button>
 		</div>                          
 		<div class='edit-wrap'>
-			<a href='/admin/column/col_add'><button class="layui-btn">
+			<a href='/admin/cate/col_add'><button class="layui-btn">
 					<i class="layui-icon">&#xe608;</i> 添加
 				</button></a>
 
@@ -78,18 +78,18 @@
 		layui.use([ 'form' ], function() {
 			var form = layui.form();
 			form.on('submit(art-edit)', function(data) {
-				window.location.href = '/admin/column/col_edit/id/'
+				window.location.href = '/admin/cate/col_edit/id/'
 						+ $(this).val();
 			});
 			
 			form.on('submit(search-btn)',function(data){
-				location.href='/admin/column/index/name/'+$('.search-name').val();
+				location.href='/admin/cate/index/name/'+$('.search-name').val();
 			});
 			//监听提交
 			form.on('submit(art-delete)', function(data) {
 				$.ajax({
 					type : 'post',
-					url : '/admin/column/col_delete',
+					url : '/admin/cate/col_delete',
 					data : {
 						'id' : $(this).val()
 					},

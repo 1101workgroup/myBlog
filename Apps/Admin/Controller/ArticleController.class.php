@@ -8,8 +8,8 @@ class ArticleController extends Controller {
  		}
 	}
     public function index(){
-    	$m = M('article');
-    	$list = $m->field('mb_article.id,title,name,create_time')->join('LEFT JOIN mb_column on mb_article.cid=mb_column.id')->select();
+    	$m = D('ArticleView');
+    	$list = $m->select();
     	$this->assign('list',$list);
     	$this->display();
     }

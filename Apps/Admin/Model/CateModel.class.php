@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
-class ColumnModel extends Model {
+class CateModel extends Model {
 	protected $_validate = array(
 			//array中的参数解释
 			/*

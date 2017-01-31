@@ -4,7 +4,7 @@ namespace Admin\Controller;
 
 use Think\Controller;
 
-class ColumnController extends Controller {
+class cateController extends Controller {
 	public function _initialize() {
 		if (! isset ( $_SESSION ['manager'] )) {
 			header ( 'Location:/admin/Login/index' );
@@ -16,7 +16,7 @@ class ColumnController extends Controller {
 			$con['name'] = $name;
 			$this->assign('name',$name);
 		}
-		$m = M ( 'column' );
+		$m = M ( 'cate' );
 		$count = $m->where($con)->count ();
 		$Page = new \Think\Page ( $count, 5 );
 		$show = $Page->show ();
@@ -32,7 +32,7 @@ class ColumnController extends Controller {
 		$json = file_get_contents ( 'php://input' );
 		$json = json_decode ( $json );
 		$data ['name'] = $json->name;
-		$m = D ( 'column' );
+		$m = D ( 'cate' );
 		if($m->create($data)){
 			if($m->add()){
 				$this->ajaxReturn(array('code'=>1,'message'=>'栏目添加成功')) ;
@@ -44,7 +44,7 @@ class ColumnController extends Controller {
 		}
 	}
 	public function col_edit() {
-		$m = M ( 'column' );
+		$m = M ( 'cate' );
 		$result = $m->find (I ( 'get.id', '' ));
 		$this->assign ( 'result', $result );
 		$this->display ();
@@ -55,7 +55,7 @@ class ColumnController extends Controller {
 			$json = json_decode ( $json );
 			$data ['name'] = $json->name;
 			$data ['id'] = $json->id;
-			$m = D ( 'column' );
+			$m = D ( 'cate' );
 			if($m->create($data)){
 				if($m->save() !== false){
 					$this->ajaxReturn(array('code'=>1,'message'=>'栏目修改成功')) ;
@@ -69,7 +69,7 @@ class ColumnController extends Controller {
 		
 	}
 	public function col_delete() {
-		if ( M ( 'column' )->delete (I ( 'post.id', '' ))) {
+		if ( M ( 'cate' )->delete (I ( 'post.id', '' ))) {
 			echo 1;
 		} else {
 			echo 0;
