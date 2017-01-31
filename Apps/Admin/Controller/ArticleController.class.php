@@ -25,6 +25,8 @@ class ArticleController extends Controller {
     	$m = M('article');
     	$data['title'] = $json->title;
     	$data['cid'] = $json->column;
+    	$data['pic'] = $json->pic;
+    	$data['memo'] =$json->desc; 
     	$data['create_time'] = date('y-m-d H:i:s', time());
     	$data['context'] = $json->context;
     	$result = $m->add($data);
@@ -33,6 +35,27 @@ class ArticleController extends Controller {
     	}else{
     		echo 0;
     	}
+    }
+    
+    public function upload_pic(){
+    	if($_FILES['pic']['tmp_name'] != ''){
+    		$upload = new \Think\Upload();// 实例化上传类
+    		$upload->maxSize   =     3145728 ;// 设置附件上传大小
+    		$upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+    		$upload->rootPath  =      './'; // 设置附件上传根目录
+    		$upload->savePath  =      './Public/Uploads/'; // 设置附件上传（子）目录
+    		// 上传单个文件
+    		$info   =   $upload->uploadOne($_FILES['pic']);
+    		if(!$info) {// 上传错误提示错误信息
+    			$this->ajaxReturn(array('code'=>'0','message'=>$this->error($upload->getError())));
+    		}else{// 上传成功 获取上传文件信息
+    			$this->ajaxReturn(array('code'=>'1','message'=>$info['savepath'].$info['savename']));
+    		}
+    	}else{
+    		$this->ajaxReturn(array('code'=>'0'));
+    	}
+    	
+    	
     }
     
     public function art_edit(){

@@ -50,8 +50,25 @@
       </select>
     </div>
   </div>
-			<textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
-			</textarea>
+   <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">文章描述</label>
+    <div class="layui-input-block">
+      <textarea name='desc' placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">缩略图</label>
+    <div class="layui-input-block pic">
+    <input type="file" name="pic" class="layui-upload-file"><b></b>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">文章内容</label>
+    <div class="layui-input-block">
+      <textarea class="layui-textarea" id="LAY_demo1" style="display: none"></textarea>
+    </div>
+  </div>
+			
 
 <br/>
 <div class="layui-form-item right">
@@ -62,16 +79,29 @@
   </div>
 
 			<script>
-			layui.use(['layedit','form'], function() {
+			layui.use(['layedit','form','upload'], function() {
 				var layedit = layui.layedit, $ = layui.jquery;
 				var form = layui.form();
 				//构建一个默认的编辑器
 				var index = layedit.build('LAY_demo1');
 				
+				layui.upload({
+				    url: '/admin/Article/upload_pic' //上传接口
+				    ,success: function(res){ //上传成功后的回调
+				      switch(res['code']){
+				      	case '0':
+				    	  	break;
+				      	case '1':
+				      		$('.pic b').html(res['message']);
+				      		break;
+				      }
+				    }
+				  });
+				
 				//监听提交
 				  form.on('submit(formDemo)', function(data){
-					  
-				  	  data.field.context = layedit.getContent(index);	 
+				  	  data.field.context = layedit.getContent(index);
+				  	  data.field.pic = $('.pic b').text();
 					  $.ajax({
 						  type:'post',
 						  url:'/admin/Article/do_add',
