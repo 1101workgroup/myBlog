@@ -14,7 +14,7 @@ class ArticleController extends Controller {
     	$this->display();
     }
     public function art_add(){
-    	$m = M('column');
+    	$m = M('cate');
     	$resutl = $m->select();
     	$this->assign('list',$resutl);
     	$this->display();
@@ -24,7 +24,7 @@ class ArticleController extends Controller {
     	$json = json_decode ( $json );//将json字符串转成对象，如果带第二个参数true，则转成数组
     	$m = M('article');
     	$data['title'] = $json->title;
-    	$data['cid'] = $json->column;
+    	$data['cid'] = $json->cate;
     	$data['pic'] = $json->pic;
     	$data['memo'] =$json->desc; 
     	$data['create_time'] = date('y-m-d H:i:s', time());
@@ -59,7 +59,7 @@ class ArticleController extends Controller {
     }
     
     public function art_edit(){
-    	$col = M('column');
+    	$col = M('cate');
     	$colresult = $col->select();
     	$this->assign('list',$colresult);
     	$id = I('get.id','');
@@ -74,7 +74,7 @@ class ArticleController extends Controller {
     	$json = json_decode ( $json );//将json字符串转成对象，如果带第二个参数true，则转成数组
     	$con['id'] =  $json->id;
     	$data['title'] = $json->title;
-    	$data['cid'] = $json->column;
+    	$data['cid'] = $json->cate;
     	$data['context'] = $json->context;
     	$m = M('article');
     	$result = $m->where($con)->save($data);
