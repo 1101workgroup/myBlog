@@ -6,9 +6,9 @@ class IndexController extends Controller {
     public function index(){
     	$cateList = M('cate')->select();
     	$this->assign('cateList',$cateList);
-    	$artList = M('article')->select();
+    	$artList = M('article')->order('create_time desc')->select();
     	$this->assign('artList',$artList);
-    	$newList = M('article')->order('create_time desc')->select();
+    	$newList = M('article')->order('create_time desc')->limit(0,10)->select();
     	$this->assign('newList',$newList);
     	$this->display();
     }
