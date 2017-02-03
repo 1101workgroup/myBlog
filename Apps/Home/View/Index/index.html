@@ -6,9 +6,72 @@
 <!-- 引入layui.js -->
 <script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
-
+<style>
+body{
+	background:#eee;
+}
+.wrap-left{
+	width:640px;
+	margin:20px 30px 0px 20px;
+	float:left;
+}
+.wrap-left li{
+	padding:10px 0px 10px 0px;
+	
+}
+.wrap-left img{
+	width:160px;
+	height:100px;
+	float:left;
+	margin-right:10px;
+}
+.wrap-left h2{
+	font-size:16px;
+	font-weight:bold;
+	margin:5px 0px 10px 0px;
+}
+.wrap-right{
+	width:290px;
+	margin:20px 20px 0px 0px;
+	float:right;
+}
+.wrap-right button{
+	margin:10px 0px 0px 10px;
+}
+</style>
 </head>
 <body>
 <include file="Public:top" />
+<div style='width:1000px;margin:auto;background:white;'>
+	<div class='wrap-left'>
+		<ul>
+		<volist name='artList' id='vo'>
+			<li>
+				<a href=''><img alt="" src="/__ROOT__{$vo.pic}" ></a>
+				<h2><a href=''>{$vo.title}</a></h2>
+				<p>
+				{$vo.memo}
+				</p>
+			</li>
+			<li style='clear:both'></li>
+		</volist>
+			
+		</ul>
+	</div>
+	<div class='wrap-right'>
+	<h2>文章分类</h2>
+	<volist name='cateList' id='vo'>
+		<button class="layui-btn  layui-btn-small"><i class="layui-icon">&#xe60a;</i>{$vo.name}</button>
+	</volist>
+	<h2 style='margin:10px 0px 10px 0px'>最新发表</h2>
+	<ul>
+	<volist name='newList' id='vo'>
+		<li style='margin:10px 0px 0px 5px'><a href=''><?php echo mb_substr($vo['title'],0,15,"utf-8");if(strlen($vo['title'])>30){echo '...';}?></a></li>
+	</volist>
+	
+	</ul>
+	</div>
+	<div style='clear:both'></div>
+</div>
 </body>
 </html>
