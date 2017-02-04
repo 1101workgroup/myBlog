@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/login.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plu/layui/css/layui.css" />
+<!-- 引入layui.js -->
+<script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
+<style>
+
+body{
+	background:#f2f2f2;
+}
+.wrap-left{
+	width:640px;
+	margin:20px 30px 0px 20px;
+	float:left;
+}
+.wrap-left li{
+	padding:10px 0px 10px 0px;
+	
+	
+}
+.wrap-left img{
+	width:630px;
+	height:340px;
+	
+	
+}
+.wrap-left h2{
+	font-size:16px;
+	font-weight:bold;
+	margin:5px 0px 10px 0px;
+}
+.wrap-right{
+	width:290px;
+	margin:20px 20px 0px 0px;
+	float:right;
+}
+.wrap-right button{
+	margin:10px 0px 0px 10px;
+}
+p{
+	margin-top:20px;
+}
+</style>
+</head>
+<body>
+<include file="Public:top" />
+<div style='width:1000px;margin:auto;background:white;'>
+	<div class='wrap-left'>
+		<div style='text-align:center;font-size:20px;font-weight:bold;margin:20px'>{$artInfo.title}</div>
+		<div style='text-align:center;margin:20px'>{$artInfo.create_time}</div>
+		<div style='margin:20px'>{$artInfo.memo}</div>
+		<div style='margin:20px'><img src='/__ROOT__{$artInfo.pic}'/></div>
+		<div style='margin:20px'>{$artInfo.context}</div>
+		<div style='margin:20px;font-weight:bold;'><a href='/index.php/Home/Index/article_detail/id/{$front.id}'>上一篇：{$front.title}</a></div>
+		<div style='margin:20px;font-weight:bold;'><a href='/index.php/Home/Index/article_detail/id/{$after.id}'>下一篇：{$after.title}</a></div>
+		
+	</div>
+	<div class='wrap-right'>
+	<h2>文章分类</h2>
+	<volist name='cateList' id='vo'>
+		<button class="layui-btn  layui-btn-small"><i class="layui-icon">&#xe60a;</i>{$vo.name}</button>
+	</volist>
+	<h2 style='margin:10px 0px 10px 0px'>最新发表</h2>
+	<ul>
+	<volist name='newList' id='vo'>
+		<li style='margin:10px 0px 0px 5px'><a href=''><?php echo mb_substr($vo['title'],0,15,"utf-8");if(strlen($vo['title'])>30){echo '...';}?></a></li>
+	</volist>
+	
+	</ul>
+	</div>
+	
+	<div style='clear:both'></div>
+	
+</div>
+<div style='margin:20px'><center><a href=''>网站首页</a> - <a href=''>联系我们</a> - <a href=''>友情链接</a></center></div>
+<div style='margin:20px'><center>版本所有@ 1999 - 2000</center></div>
+</body>
+</html>

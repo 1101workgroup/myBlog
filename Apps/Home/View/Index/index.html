@@ -7,8 +7,50 @@
 <script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
 <style>
+.pages {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	height: 42px;
+	float: left;
+	margin: 0px 0px 20px 20px;
+	color: #033C71;
+}
+
+.pages .current {
+	background: #009688;
+color: white;
+}
+.pages a{
+	text-decoration:  none;
+	color: #555555;
+}
+.pages .prev,
+.pages .num,
+.pages .next,
+.pages .current,
+.pages .end,
+.pages .first {
+	float: left;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	margin: 4px;
+	padding: 1px 2px;
+	border: 1px dashed #dddddd;
+}
+
+.pages .prev:hover,
+.pages .num:hover,
+.pages .next:hover,
+.pages .current:hover,
+.pages .end:hover,
+.pages .first:hover{
+background: #5FB878;
+color: white;
+}
 body{
-	background:#eee;
+	background:#f2f2f2;
 }
 .wrap-left{
 	width:640px;
@@ -17,6 +59,7 @@ body{
 }
 .wrap-left li{
 	padding:10px 0px 10px 0px;
+	
 	
 }
 .wrap-left img{
@@ -47,13 +90,15 @@ body{
 		<ul>
 		<volist name='artList' id='vo'>
 			<li>
-				<a href=''><img alt="" src="/__ROOT__{$vo.pic}" ></a>
-				<h2><a href=''>{$vo.title}</a></h2>
+				<a href='/index.php/Home/Index/article_detail/id/{$vo.id}'><img alt="" src="/__ROOT__{$vo.pic}" ></a>
+				<h2><a href='/index.php/Home/Index/article_detail/id/{$vo.id}'>{$vo.title}</a></h2>
 				<p>
 				{$vo.memo}
 				</p>
 			</li>
-			<li style='clear:both'></li>
+			<li style='clear:both'>
+				<hr>
+			</li>
 		</volist>
 			
 		</ul>
@@ -71,7 +116,12 @@ body{
 	
 	</ul>
 	</div>
+	
+	<div style='clear:both'></div>
+	<div class='pages'>{$page}</div>
 	<div style='clear:both'></div>
 </div>
+<div style='margin:20px'><center><a href=''>网站首页</a> - <a href=''>联系我们</a> - <a href=''>友情链接</a></center></div>
+<div style='margin:20px'><center>版本所有@ 1999 - 2000</center></div>
 </body>
 </html>
