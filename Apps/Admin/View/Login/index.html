@@ -38,7 +38,7 @@ body {
 					<div class="layui-form-item">
 						<label class="layui-form-label">用户名</label>
 						<div class="layui-input-inline">
-							<input type="text" name="user" lay-verify="required" required
+							<input type="text" name="user" 
 								placeholder="请输入用户名" autocomplete="off" class="layui-input">
 						</div>
 					</div>
@@ -47,7 +47,7 @@ body {
 					<div class="layui-form-item">
 						<label class="layui-form-label">密码</label>
 						<div class="layui-input-inline">
-							<input type="password" name="pwd" lay-verify="required" required
+							<input type="password" name="pwd" 
 								placeholder="请输入密码" autocomplete="off" class="layui-input">
 						</div>
 					</div>
@@ -75,15 +75,14 @@ body {
 			$.ajax({
 				type : 'post',
 				url : '/admin/Login/login/',
-				dataType : "text",
 				data : JSON.stringify(data.field),
 				success : function(data) {
-					switch (data) {
+					switch (data['code']) {
 					case '1':
 						window.location.href = '/admin/';
 						break;
 					case '0':
-						layer.msg('用户名或密码错误!');
+						layer.msg(data['message']);
 						break;
 					}
 				}
