@@ -9,7 +9,12 @@ class ArticleController extends Controller {
 	}
     public function index(){
     	$m = D('ArticleView');
-    	$list = $m->select();
+    	$count = $m->where($con)->count ();
+    	$Page = new \Think\Page ( $count, 10 );
+    	$show = $Page->show ();
+    	$list = $m->where($con)->limit($Page->firstRow.','.$Page->listRows)->select ();
+    	$this->assign ( 'list', $list );
+    	$this->assign ( 'page', $show );
     	$this->assign('list',$list);
     	$this->display();
     }
