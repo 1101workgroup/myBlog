@@ -54,6 +54,23 @@ body {
 				</dd>
 				<dd>
 					<div class="layui-form-item">
+						<label class="layui-form-label">验证码</label>
+						<div class="layui-input-inline">
+							<div><input type="text" name="verify" lay-verify="verify"
+								placeholder="请输入验证码" autocomplete="off" class="layui-input"></div>
+						</div>
+					</div>
+				</dd>
+				<dd>
+					<div class="layui-form-item">
+						<label class="layui-form-label"></label>
+						<div class="layui-input-inline">
+							<div><img style='width:190px;height:38px;cursor:pointer' onclick="this.src='__CONTROLLER__/verify/'+Math.random()" src="/Admin/login/verify" /></div>
+						</div>
+					</div>
+				</dd>
+				<dd>
+					<div class="layui-form-item">
 						<div class="layui-input-block">
 							<input type='button' class="layui-btn" lay-submit
 								lay-filter="login-btn" value='点击登录'>
