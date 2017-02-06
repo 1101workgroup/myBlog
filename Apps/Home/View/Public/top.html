@@ -11,9 +11,12 @@
 .wrap-top{
 		
 		background:#393D49;
-		border-bottom:5px solid #009688;
+		
 		color:#fff;
 	}
+.wrap-currentnav{
+	border-bottom:5px solid #009688;
+}
 .wrap-top .layui-nav{
 	width:1000px;
 		margin:auto;
@@ -34,6 +37,7 @@
 	font-family:'微软雅黑';
 	margin-left:50px;
 }
+
 </style>
 </head>
 <body>
@@ -41,7 +45,7 @@
 
 	<ul class="layui-nav">
 	<volist name='cateList' id='vo'>
-		<li class="layui-nav-item"><a href='/index.php/Home/Index/index/id/{$vo.id}'>{$vo.name}</a></li>
+		<li class="layui-nav-item <eq name='vo.id' value='$current'>wrap-currentnav</eq>"><a href='/index.php/Home/Index/index/id/{$vo.id}'>{$vo.name}</a></li>
 	</volist>
   
 </ul>

@@ -5,6 +5,7 @@ class IndexController extends Controller {
 	//用户访问首页
     public function index(){
     	$id = I('get.id','');
+    	$this->assign('current',$id);
     	if($id !=''){
     		$con['cid'] = $id;
     	}
