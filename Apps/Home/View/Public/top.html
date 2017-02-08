@@ -44,14 +44,47 @@
 <div class="wrap-top">
 
 	<ul class="layui-nav">
+	<li class="layui-nav-item "><a href='__APP__/Index/index/'>myBlog</a></li>
 	<volist name='cateList' id='vo'>
-		<li class="layui-nav-item <eq name='vo.id' value='$current'>wrap-currentnav</eq>"><a href='/index.php/Home/Index/index/id/{$vo.id}'>{$vo.name}</a></li>
+		<li class="layui-nav-item <eq name='vo.id' value='$current'>wrap-currentnav</eq>"><a href='__APP__/Index/index/id/{$vo.id}'>{$vo.name}</a></li>
 	</volist>
-  
+  <li style='float:right;height:60px;line-height:60px;'><span onclick='login()'>登录</span> | <span onclick='register()'>注册</span></li>
 </ul>
+	
 	</div>
 </body>
 <script>
+function login(){
+	layui.use('layer', function(){
+		  var layer = layui.layer;
+		  
+		  layer.open({
+			  type: 2,
+			  title: '用户登录',
+			  shadeClose: true,
+			  shade: 0.8,
+			  area: ['380px', '600px'],
+			  offset: '100px',
+			  content: '/index.php/Home/Login/index' //iframe的url
+			}); 
+		});  
+	
+}
+function register(){
+	layui.use('layer', function(){
+		  var layer = layui.layer;
+		  
+		  layer.open({
+			  type: 2,
+			  title: '用户注册',
+			  shadeClose: true,
+			  shade: 0.8,
+			  area: ['450px', '500px'],
+			  offset: '100px',
+			  content: '/index.php/Home/Login/register' //iframe的url
+			}); 
+		});  
+}
 function logout(){
 	window.location.href='/admin/Login/logout';
 }
