@@ -15,4 +15,5 @@ class CommonController extends Controller{
 		$newList = M('article')->order('create_time desc')->limit(0,10)->select();
 		$this->assign('newList',$newList);
 	}
+	
 }

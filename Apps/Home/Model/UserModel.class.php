@@ -13,5 +13,18 @@ class UserModel extends Model {
 			 * 
 			 * */
 			array('user','','该用户名已存在','1','unique',3),
+			array('user','require','用户名不能为空',1,'regex',4),
+			array('pwd','require','密码不能为空',1,'regex',4),
 	);
+	public function login(){
+		$pwd = $this->pwd;
+		$res = $this->where(array('user'=>$this->user))->find();
+		if($res['pwd'] == $pwd){
+			$_SESSION['user'] = $res['id'];
+			$_SESSION['name'] = $res['name'];
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

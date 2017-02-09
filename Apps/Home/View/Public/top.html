@@ -48,7 +48,7 @@
 	<volist name='cateList' id='vo'>
 		<li class="layui-nav-item <eq name='vo.id' value='$current'>wrap-currentnav</eq>"><a href='__APP__/Index/index/id/{$vo.id}'>{$vo.name}</a></li>
 	</volist>
-  <li style='float:right;height:60px;line-height:60px;'><span onclick='login()'>登录</span> | <span onclick='register()'>注册</span></li>
+  <li style='float:right;height:60px;line-height:60px;'><eq name='Think.session.user' value =''><span onclick='login()'>登录</span> | <span onclick='register()'>注册</span><else/><span onclick='info()'>个人中心</span> | <span onclick='logout()'>退出</span></eq></li>
 </ul>
 	
 	</div>
@@ -86,7 +86,7 @@ function register(){
 		});  
 }
 function logout(){
-	window.location.href='/admin/Login/logout';
+	window.location.href='/Home/Login/logout';
 }
 </script>
 </html>

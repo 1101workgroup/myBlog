@@ -15,8 +15,17 @@ class LoginController extends Controller {
     	$json = json_decode($json);
     	$data['user'] = $json->user;
     	$data['pwd'] = $json->pwd;
-    	$data['yzm'] = $json->yzm;
-    	echo $json->user.$json->pwd.$json->yzm;
+    	$m = D('user');
+    	if($m->create($data,4)){
+    		if($m->login()){
+    			$this->ajaxReturn(array('code'=>'1','message'=>'登录成功'));
+    		}else{
+    			$this->ajaxReturn(array('code'=>'0','message'=>'用户名密码错误'));
+    		}
+    	}else{
+    		$this->ajaxReturn(array('code'=>'0','message'=>$m->getError()));
+    	}
+   	
     }
     public function register(){
     	$this->display();
@@ -82,6 +91,10 @@ class LoginController extends Controller {
     		$this->ajaxReturn(array('code'=>2,'message'=>'验证码错误'));
     	
     	}
-		
+	
+    }
+    public function logout(){
+	    	session_destroy();
+	    	header('Location:/index');
     }
 }

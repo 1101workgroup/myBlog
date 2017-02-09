@@ -7,7 +7,7 @@
 <!-- 引入layui.js -->
 <script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
-<script type="text/javascript" src='__PUBLIC__/home/js/login.js'></script>
+
 
 </head>
 <div class='login layui-form layui-form-pane'><!-- 这个layui-form 用来表明这个div包着的都是表单元素，比如单选框、复选框等样式，一定要有这个class包着，才能正常显示 -->
@@ -43,7 +43,7 @@
 		    <div class="layui-input-block">
 		      <div>
 		      <span id="reg" style="padding-left:20px;cursor:pointer;" onclick='register()'>马上注册？</span>
-		      <button class="layui-btn" lay-submit lay-filter="index">立即登录</button>
+		      <span class="layui-btn" lay-submit lay-filter="index">立即登录</span>
 		    </div>
 	    </div>
 	</dd>
@@ -53,6 +53,30 @@
 
 </div>
 <script type="text/javascript">
+layui.use(['form'], function(){  // 如果只加载一个组件，可以不填数组。如：layui.use('form')
+	  var form = layui.form(); // 获取form组件
+	  form.on('submit(index)', function(data){
+		  $.ajax({
+	  			type:'post',//以什么样的类型去传，post或者get
+	  			url:'/index.php/Home/Login/do_login',//传值目标地址
+	  			data:JSON.stringify(data.field),
+	  			success:function(data){
+	  				switch(data['code']){
+				  	case '1':
+				  		layer.alert(data['message'], {icon: 1},function() {
+				  			parent.location.reload();
+						});
+				  		break;
+				  	case '0':
+				  		layer.alert(data['message'], {icon: 2},function() {
+							location.reload();
+						});
+				  }
+	  			}
+	  		})
+		 //这个里面写登录的操作，可参考/apps/admin/view/login/index.html中的js ajax回调。
+	  });
+});
 function register(){
 	location.href='__APP__/Login/register';
 }
