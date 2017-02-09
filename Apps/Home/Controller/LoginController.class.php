@@ -36,7 +36,7 @@ class LoginController extends Controller {
 //     	}
 		$captch_code = '';
     	for($i=0;$i<4;$i++){
-    		$fontsize=6;
+    		$fontsize=10;
     		$fontcolor = imagecolorallocate($image, rand(0,120), rand(0,120), rand(0,120));
     		$data = 'abcdefghijkmnpkrstuvwxyz23456789';
     		$fontcontent = substr($data, rand(0,strlen($data)),1);
@@ -46,15 +46,15 @@ class LoginController extends Controller {
     		imagestring($image, $fontsize, $x, $y, $fontcontent, $fontcolor);
     	}
     	$_SESSION['authcode'] = $captch_code;
-    	for($i=0;$i<200;$i++){
+    	for($i=0;$i<100;$i++){
     		$pointcolor = imagecolorallocate($image, rand(50,200), rand(50,200), rand(50,200));
     		imagesetpixel($image, rand(1,99), rand(1,29), $pointcolor);
     	}
     	
-    	for ($i=0;$i<3;$i++){
-    		$linecolor = imagecolorallocate($image, rand(80,200), rand(80,220), rand(80,200));
-    		imageline($image, rand(1,99), rand(1,29), rand(1,99), rand(1,29), $linecolor);
-    	}
+//     	for ($i=0;$i<3;$i++){
+//     		$linecolor = imagecolorallocate($image, rand(80,200), rand(80,220), rand(80,200));
+//     		imageline($image, rand(1,99), rand(1,29), rand(1,99), rand(1,29), $linecolor);
+//     	}
     	 
     	header("Content-type: image/png");
     	imagepng($image);
@@ -65,6 +65,7 @@ class LoginController extends Controller {
     	$json = json_decode($json);
     	$data['user'] = $json->user;
     	$data['pwd'] = $json->pwd;
+    	$data['name'] = $json->name;
     	$authcode = strtolower($json->authcode);
     	if($authcode == $_SESSION['authcode']){
     		$m = D('user');

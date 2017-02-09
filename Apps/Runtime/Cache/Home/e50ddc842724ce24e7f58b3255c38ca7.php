@@ -31,18 +31,18 @@
 	</dd> 
 	<dd>
 	<!-- 单选框写好input之后，除了上面div中 提到的 layui-form 这个class 之外 还需要模块驱动，才能在网页上正常显示，js模块驱动在下面js的部分会说明 -->
-		<div class="layui-form-item">
+		<!-- <div class="layui-form-item">
    			 <label class="layui-form-label">验证码</label>
    			 <div class="layui-input-inline">
      		 <input type="text" name="yzm" lay-verify="yzm" placeholder="请输入验证码" autocomplete="off" class="layui-input">
     		 </div>
-  		</div>
+  		</div> -->
 	</dd>
 	<dd>
 		<div class="layui-form-item">
 		    <div class="layui-input-block">
 		      <div>
-		      <span id="reg" style="padding-left:20px;cursor:pointer;" lay-submit lay-filter="register">马上注册？</span>
+		      <span id="reg" style="padding-left:20px;cursor:pointer;" onclick='register()'>马上注册？</span>
 		      <button class="layui-btn" lay-submit lay-filter="index">立即登录</button>
 		    </div>
 	    </div>
@@ -52,6 +52,10 @@
  
 
 </div>
-
+<script type="text/javascript">
+function register(){
+	location.href='/index.php/Login/register';
+}
+</script>
 </body>
 </html>
