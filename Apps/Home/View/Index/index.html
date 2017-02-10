@@ -103,25 +103,11 @@ body{
 			
 		</ul>
 	</div>
-	<div class='wrap-right'>
-	<h2>文章分类</h2>
-	<volist name='cateList' id='vo'>
-		<a href='__APP__/Index/index/id/{$vo.id}'><button class="layui-btn  layui-btn-small"><i class="layui-icon">&#xe60a;</i>{$vo.name}</button></a>
-	</volist>
-	<h2 style='margin:10px 0px 10px 0px'>最新发表</h2>
-	<ul>
-	<volist name='newList' id='vo'>
-		<li style='margin:10px 0px 0px 5px'><a href=''><?php echo mb_substr($vo['title'],0,15,"utf-8");if(strlen($vo['title'])>30){echo '...';}?></a></li>
-	</volist>
-	
-	</ul>
-	</div>
-	
+	<include file="Public:right" />
 	<div style='clear:both'></div>
 	<div class='pages'>{$page}</div>
 	<div style='clear:both'></div>
 </div>
-<div style='margin:20px'><center><a href=''>网站首页</a> - <a href=''>联系我们</a> - <a href=''>友情链接</a></center></div>
-<div style='margin:20px'><center>版本所有@ 1999 - 2000</center></div>
+<include file="Public:footer" />
 </body>
 </html>

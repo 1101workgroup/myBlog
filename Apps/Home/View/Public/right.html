@@ -1,0 +1,13 @@
+<div class='wrap-right'>
+	<h2>文章分类</h2>
+	<volist name='cateList' id='vo'>
+		<a href='__APP__/Index/index/id/{$vo.id}'><button class="layui-btn  layui-btn-small"><i class="layui-icon">&#xe60a;</i>{$vo.name}</button></a>
+	</volist>
+	<h2 style='margin:10px 0px 10px 0px'>最新发表</h2>
+	<ul>
+	<volist name='newList' id='vo'>
+		<li style='margin:10px 0px 0px 5px'><a href=''><?php echo mb_substr($vo['title'],0,15,"utf-8");if(strlen($vo['title'])>30){echo '...';}?></a></li>
+	</volist>
+	
+	</ul>
+	</div>

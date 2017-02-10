@@ -7,7 +7,48 @@
 <script src="__PUBLIC__/admin/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src='__PUBLIC__/plu/layui/layui.js'></script>
 <style>
+.pages {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	height: 42px;
+	float: left;
+	margin: 0px 0px 20px 20px;
+	color: #033C71;
+}
 
+.pages .current {
+	background: #009688;
+color: white;
+}
+.pages a{
+	text-decoration:  none;
+	color: #555555;
+}
+.pages .prev,
+.pages .num,
+.pages .next,
+.pages .current,
+.pages .end,
+.pages .first {
+	float: left;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	margin: 4px;
+	padding: 1px 2px;
+	border: 1px dashed #dddddd;
+}
+
+.pages .prev:hover,
+.pages .num:hover,
+.pages .next:hover,
+.pages .current:hover,
+.pages .end:hover,
+.pages .first:hover{
+background: #5FB878;
+color: white;
+}
 body{
 	background:#f2f2f2;
 }
@@ -56,26 +97,55 @@ p{
 		<div style='margin:20px'>{$artInfo.context}</div>
 		<div style='margin:20px;font-weight:bold;'><a href='/index.php/Home/Index/article_detail/id/{$front.id}'>上一篇：{$front.title}</a></div>
 		<div style='margin:20px;font-weight:bold;'><a href='/index.php/Home/Index/article_detail/id/{$after.id}'>下一篇：{$after.title}</a></div>
-		
+		<div style='margin:20px;'>
+		<div style='padding:20px 0 20px 0;border-top:1px solid #eeeeee'>评论内容</div>
+			<volist name='msgres' id='vo'>
+				<div style='padding:20px 0 5px 0;border-bottom:1px solid #eeeeee'>#{$vo.id}</div>
+				<div style='margin:10px'>{$vo.name}<span style='float:right'>{$vo.create_time}</span></div>
+				<div style='margin:10px'> {$vo.message}</div>
+				<div></div>
+			</volist>
+			
+		</div>
+		<div class='pages'>{$page}</div>
+		<div style='clear:both'></div>
+		<div style='margin:20px;' class='layui-form'>
+		<div style='padding:20px 0 20px 0;border-top:1px solid #eeeeee'>发表评论</div>
+		<textarea id="demo" name='context' style="display: none;"></textarea>
+		<button class='layui-btn'lay-submit lay-filter="index" style='float:right;margin:20px 20px 20px 0 '>发表评论</button>
+
+		</div>
 	</div>
-	<div class='wrap-right'>
-	<h2>文章分类</h2>
-	<volist name='cateList' id='vo'>
-		<a href='__APP__/Index/index/id/{$vo.id}'><button class="layui-btn  layui-btn-small"><i class="layui-icon">&#xe60a;</i>{$vo.name}</button></a>
-	</volist>
-	<h2 style='margin:10px 0px 10px 0px'>最新发表</h2>
-	<ul>
-	<volist name='newList' id='vo'>
-		<li style='margin:10px 0px 0px 5px'><a href=''><?php echo mb_substr($vo['title'],0,15,"utf-8");if(strlen($vo['title'])>30){echo '...';}?></a></li>
-	</volist>
-	
-	</ul>
-	</div>
-	
-	<div style='clear:both'></div>
+	<include file="Public:right" />
 	
 </div>
-<div style='margin:20px'><center><a href=''>网站首页</a> - <a href=''>联系我们</a> - <a href=''>友情链接</a></center></div>
-<div style='margin:20px'><center>版本所有@ 1999 - 2000</center></div>
+<include file="Public:footer" />
 </body>
+<script>
+layui.use(['layedit','form'], function(){
+  var layedit = layui.layedit;
+  var layform = layui.form();
+  var index = layedit.build('demo'); //建立编辑器
+  layform.on('submit(index)',function(data){
+	  data.field.context = layedit.getContent(index);
+	  data.field.aid = {$artInfo.id};
+	 
+	  $.ajax({
+		  type:'post',
+		  url:'/index.php/Home/Message/add_msg',
+		  data:JSON.stringify(data.field),
+		  success:function(data){
+			  switch(data['code']){
+			  case '1':
+			  		location.reload();
+				  break;
+			  case '0':
+			  		location.reload();
+				  break;
+			  }
+		  }
+	  });
+  })
+});
+</script>
 </html>
