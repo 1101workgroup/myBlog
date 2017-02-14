@@ -111,9 +111,9 @@ p{
 		<div style='clear:both'></div>
 		<div style='margin:20px;' class='layui-form'>
 		<div style='padding:20px 0 20px 0;border-top:1px solid #eeeeee'>发表评论</div>
-		<textarea id="demo" name='context' style="display: none;"></textarea>
-		<button class='layui-btn'lay-submit lay-filter="index" style='float:right;margin:20px 20px 20px 0 '>发表评论</button>
-
+		<eq name='Think.session.user' value =''>您还未登陆，请先登陆。
+		<else/><textarea id="demo" name='context' style="display: none;"></textarea>
+		<button class='layui-btn'lay-submit lay-filter="index" style='float:right;margin:20px 20px 20px 0 '>发表评论</button></eq>
 		</div>
 	</div>
 	<include file="Public:right" />

@@ -15,7 +15,7 @@ class LoginController extends Controller {
  		$json = json_decode ( $json );//将json字符串转成对象，如果带第二个参数true，则转成数组 
 		$con ['user'] = $json->user;
 		$con ['pwd'] = $json->pwd;
-		$con ['verify'] = $json->verify;
+		//$con ['verify'] = $json->verify;
 		$m = D ( 'manager' );
 		if($m->create($con,4)){
 			if($m->login()){
@@ -28,13 +28,13 @@ class LoginController extends Controller {
 			
 		}
 	}
-	public function verify(){
-		$Verify = new \Think\Verify();
-		$Verify->fontSize = 30;
-		$Verify->length   = 3;
-		$Verify->useNoise = false;
-		$Verify->entry();
-	}
+// 	public function verify(){
+// 		$Verify = new \Think\Verify();
+// 		$Verify->fontSize = 30;
+// 		$Verify->length   = 3;
+// 		$Verify->useNoise = false;
+// 		$Verify->entry();
+// 	}
 	public function logout(){
 		session_destroy();
 		header('Location:/admin');
